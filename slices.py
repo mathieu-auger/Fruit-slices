@@ -18,9 +18,8 @@ def symboles(symboles):
             'g','h','j','k','l','m','w','x','c','v','b','n',',',';',':','!','1','2','3','4','5','6','7','8','9','/','*','-',
             '+']
 
-    symbole_aleatoire = random.choice(symboles)
-    return symbole_aleatoire
-
+    
+    
 
 cherry_img = pygame.image.load("image/cherry.png")
 strawberry_img = pygame.image.load("image/strawberry.png")
@@ -30,13 +29,33 @@ bomb_img = pygame.image.load("image/bomb.png")
 banane_img = pygame.image.load("image/banane.png")
 
 # Redimensionnement des images
-fruits = [    
-    pygame.transform.scale(cherry_img, (100, 100)),
-    pygame.transform.scale(strawberry_img, (100, 100)),
-    pygame.transform.scale(ice_img, (100, 100)),
-    pygame.transform.scale(kiwi_img, (100, 100)),
-    pygame.transform.scale(bomb_img, (100, 100)),
-    pygame.transform.scale(banane_img, (100, 100))
+fruits = [ 
+    {
+        "img": pygame.transform.scale(cherry_img, (100, 100)),
+        "letter" : 'a'     
+
+    },
+    {
+        "img": pygame.transform.scale(strawberry_img, (100, 100)),
+        "letter" : 'b'
+    },
+    {
+        "img" : pygame.transform.scale(ice_img, (100, 100)),
+        "letter" : 'c'
+    },
+    {
+        "img" : pygame.transform.scale(kiwi_img, (100, 100)),
+        "letter" : 'd'
+    },
+    {
+        "img" : pygame.transform.scale(bomb_img, (100, 100)),
+        "letter" : 'e'
+    },
+    {
+        "img" : pygame.transform.scale(banane_img, (100, 100)),
+        "letter" : 'f'
+    },
+    
 ]
     
 
@@ -53,11 +72,15 @@ pygame.display.update()
 
 
 while keepGameRunning:
-    screen.blit(background,(0,0))
     
+    # symbole_aleatoire = random.choice(symboles)
+    screen.blit(background,(0,0))
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             keepGameRunning = False
+    if pygame.event ==  KEYUP :
+        True
 
     s_y += 0.4
     y += s_y
@@ -66,17 +89,16 @@ while keepGameRunning:
         s_y = -20    
         fruits_random = random.choice(fruits)
         x = random.randint(100, 1180)
-        
-        #generer un rectangle autour du fruit
 
-        #generer un symbole/lettre aleatoire 
-        # integre la lettre/symbole au rectangle
-    screen.blit(fruits_random, (x, y))
-    ecrire = font.render('salut' ,True, (255,255,255))
-    
+    screen.blit(fruits_random['img'], (x, y))
+    ecrire = font.render(fruits_random['letter'], True, (255, 255, 255))
+
     screen.blit(ecrire,(x , y))
+
+    
+
     pygame.display.update()
-    pygame.time.Clock().tick(60)
+    pygame.time.Clock().tick(100)
     
         
        
@@ -86,13 +108,8 @@ while keepGameRunning:
 #def combos() :
 
 
-
-
 # def user() :
     
-
-
-
 
 # def lettre_au_hasard():
 #     with open("lettre au hasard", "w", encoding = "utf8")as fichier :
